@@ -18,18 +18,63 @@ def calculate_change(total_cost, total_paid):
 	diff = (total_paid) - (total_cost)
 	return diff
 
+def convert_tender(change_owed):
+	dollar_convert = 0
+	quarter_convert = 0
+	dime_convert = 0
+	nickel_convert = 0
+	penny_convert = 0
+	while (change_owed >= 1.00):
+   		change_owed = change_owed - 1
+		dollar_convert = dollar_convert + 1 
+	while (change_owed >= 0.25):
+		change_owed = change_owed - 0.25
+		quarter_convert = quarter_convert + 1
+	while (change_owed >= 0.10):
+		change_owed = change_owed - 0.10
+		dime_convert = dime_convert + 1
+	while (change_owed >= 0.05):
+		change_owed = change_owed - 0.05
+		dime_convert = dime_convert + 1
+	while (change_owed >= 0):
+		change_owed = change_owed - 0.01
+		penny_convert = penny_convert + 1
+	return dollar_convert, quarter_convert, dime_convert, nickel_convert, penny_convert
 
+# Calculate change and tell
 difference = calculate_change(total_cost, total_paid)
+print difference
+
 if difference < 0:
-	print "you are", difference, "under"
+	owed = (-1)*(difference)
+	change_owed = round(owed, 2)
+	print "you need to pay", change_owed, "more for the meal"
+	(dollar, quarter, dime, nickel, penny) = convert_tender(change_owed)
+	print change_owed, "converts to"
+	print dollar, "dollars"
+	print quarter, "quarters"
+	print dime, "dimes"
+	print nickel, "nickels"
+	print penny, "pennies"
+		
+
 elif difference > 0:
-	print "you get", difference, "change"
-
-
-
+	change_owed = round(difference, 2)
+	print "you get", change_owed, "back in change"
+	convert_tender(change_owed)
+	print (change_owed)
+	
 
 # Example output: "$2.33 owed: 2 dollars, 1 quater, 0 dimes, 1 nickel, and 3 pennies"
-# def convert_tender(change_owed):
+
+
+
+
+
+
+
+
+
 
 
 # Use the input function to get input from user:
