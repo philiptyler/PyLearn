@@ -8,61 +8,77 @@ Change counter!
 	total cost and total paid then print the human-readable string of change
 """
 
-# Input Section
-total_cost = input("What was the price?:")
-total_paid = input("What did you pay?:") 
-
-# Example output: 2.66 (make sure its only 2 decimal places! your parameters may not be)
-
+# Calculate difference between price and amount of money given
 def calculate_change(total_cost, total_paid):
 	diff = (total_paid) - (total_cost)
 	return diff
 
+# Convert difference into tender
 def convert_tender(change_owed):
 	dollar_convert = 0
 	quarter_convert = 0
 	dime_convert = 0
 	nickel_convert = 0
 	penny_convert = 0
+
+	# NOTE THIS WONT work if the numbers are exact (aka >= 0.25, >= 0.1) why is that? Super Frustrating
+
+	#DOLLARS
 	while (change_owed >= 1.00):
    		change_owed = change_owed - 1
-		dollar_convert = dollar_convert + 1 
-	while (change_owed >= 0.25):
+		dollar_convert = dollar_convert + 1
+
+	#QUARTERS
+	while (change_owed >= 0.2499999):
 		change_owed = change_owed - 0.25
 		quarter_convert = quarter_convert + 1
-	while (change_owed >= 0.10):
+
+	#DIMES
+	while (change_owed >= 0.0999999):
 		change_owed = change_owed - 0.10
 		dime_convert = dime_convert + 1
-	while (change_owed >= 0.05):
+
+	#NICKELS
+	while (change_owed >= 0.049999):
 		change_owed = change_owed - 0.05
-		dime_convert = dime_convert + 1
-	while (change_owed >= 0):
+		nickel_convert = nickel_convert + 1
+
+	#PENNIES
+	while (change_owed > 0):
 		change_owed = change_owed - 0.01
 		penny_convert = penny_convert + 1
+
 	return dollar_convert, quarter_convert, dime_convert, nickel_convert, penny_convert
 
-# Calculate change and tell
-difference = calculate_change(total_cost, total_paid)
-print difference
 
+
+
+# Input Section
+total_cost = input("What was the price?:")
+total_paid = input("What did you pay?:")
+print " " 
+
+# Calculate change 
+difference = calculate_change(total_cost, total_paid)
+
+#Convert tender and output it
+# If you gave too little money made sure to convert to positive float before passing into convert_tender
 if difference < 0:
 	owed = (-1)*(difference)
 	change_owed = round(owed, 2)
-	print "you need to pay", change_owed, "more for the meal"
 	(dollar, quarter, dime, nickel, penny) = convert_tender(change_owed)
-	print change_owed, "converts to"
-	print dollar, "dollars"
-	print quarter, "quarters"
-	print dime, "dimes"
-	print nickel, "nickels"
-	print penny, "pennies"
+
+	print "you need to pay", change_owed, "more for the meal"
+	print dollar, "dollars", quarter, "quarters", dime, "dimes", nickel, "nickels", penny, "pennies"
 		
 
 elif difference > 0:
 	change_owed = round(difference, 2)
+	(dollar, quarter, dime, nickel, penny) = convert_tender(change_owed)
+
 	print "you get", change_owed, "back in change"
-	convert_tender(change_owed)
-	print (change_owed)
+	print dollar, "dollars", quarter, "quarters", dime, "dimes", nickel, "nickels", penny, "pennies"
+		
 	
 
 # Example output: "$2.33 owed: 2 dollars, 1 quater, 0 dimes, 1 nickel, and 3 pennies"
