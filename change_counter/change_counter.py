@@ -8,10 +8,43 @@ Change counter!
 	total cost and total paid then print the human-readable string of change
 """
 
+car = Car()
+
+class Tender():
+	__init__(self, name, plural, value):
+		self.name = name
+		self.value = value
+
+penny = Tender('penny', 'pennies', 0.01)
+nickel = Tender('nickel', 'nickels', 0.05)
+dime = Tender('dime', 'dimes', 0.1)
+quarter = Tender('quarter', 'quarters', 0.25)
+dollar = Tender('dollar', 'dollars', 1.00)
+
+tenders = [dollar, quarter, dime, nickel, penny]
+
+def convert_tender_2(change_owed):
+	if (change_owed > 0):
+		print "you get", change_owed, "back in change"
+	else:
+		print "you need to pay", change_owed, "more for the meal"
+	for tender in tenders:
+		count = 0
+		# FILL THIS IN MAGGOT
+
+		if count == 1:
+			print count, tender.name
+		else
+			print count, tender.plural
+
 # Calculate difference between price and amount of money given
+# learning the raise keyword
 def calculate_change(total_cost, total_paid):
-	diff = (total_paid) - (total_cost)
-	return diff
+	if isinstance(total_paid, float) and isinstance(total_cost, float):
+		diff = (total_paid) - (total_cost)
+		return diff
+	else:
+		raise TypeError('Parameters must be Floats')
 
 # Convert difference into tender
 def convert_tender(change_owed):
@@ -20,6 +53,8 @@ def convert_tender(change_owed):
 	dime_convert = 0
 	nickel_convert = 0
 	penny_convert = 0
+
+	# change = { dollar: 0, quarter: 0, dime: 0, nickel: 0, penny: 0 }
 
 	# NOTE THIS WONT work if the numbers are exact (aka >= 0.25, >= 0.1) why is that? Super Frustrating
 
@@ -50,15 +85,22 @@ def convert_tender(change_owed):
 
 	return dollar_convert, quarter_convert, dime_convert, nickel_convert, penny_convert
 
+try:
+	calculate_change('20', '18')
+except TypeError, as e:
+	print e.message
 
+
+except: # THE WORST PYTHON YOU CAN WRITE
+	pass # THIS CODE COULD HAVE ERRORS BUT I DONT GIVE A FUCK
 
 
 # Input Section
 total_cost = input("What was the price?:")
 total_paid = input("What did you pay?:")
-print " " 
+print " "
 
-# Calculate change 
+# Calculate change
 difference = calculate_change(total_cost, total_paid)
 
 #Convert tender and output it
@@ -70,7 +112,7 @@ if difference < 0:
 
 	print "you need to pay", change_owed, "more for the meal"
 	print dollar, "dollars", quarter, "quarters", dime, "dimes", nickel, "nickels", penny, "pennies"
-		
+
 
 elif difference > 0:
 	change_owed = round(difference, 2)
@@ -78,8 +120,8 @@ elif difference > 0:
 
 	print "you get", change_owed, "back in change"
 	print dollar, "dollars", quarter, "quarters", dime, "dimes", nickel, "nickels", penny, "pennies"
-		
-	
+
+
 
 # Example output: "$2.33 owed: 2 dollars, 1 quater, 0 dimes, 1 nickel, and 3 pennies"
 
