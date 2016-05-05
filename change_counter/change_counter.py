@@ -23,6 +23,9 @@ dollar = Tender('dollar', 'dollars', 100)
 # make "tenders", an array of the objects to make them easy to pass around
 tenders = [dollar, quarter, dime, nickel, penny]
 
+#####################################################################################################################
+
+
 def convert_tender_2(change_owed):
 	if (change_owed > 0):
 		print "you get", change_owed, "back in change"
@@ -55,16 +58,29 @@ def calculate_change(total_cost, total_paid):
 
 
 ################################################ NEW MAIN SPACE#################################################
-
-# Input Section
-total_cost = input("What was the price?:")
-total_paid = input("What did you pay?:")
-print " "
+yes = 1
+while (yes == 1):
+	# Input Section
+	total_cost = input("What was the price?:")
+	total_paid = input("What did you pay?:")
+	print " "
 
 # Calculate change, return difference in float calue
-change_owed = calculate_change(total_cost, total_paid)
+	change_owed = calculate_change(total_cost, total_paid)
+	convert_tender_2(change_owed)
 
-convert_tender_2(change_owed)
+	go_again = raw_input("Do it again?(y/n):")
+	if go_again != "y":
+		yes = 0
+#####################################################################################################################
+
+
+
+
+
+
+
+
 
 
 
