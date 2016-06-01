@@ -58,20 +58,21 @@ def calculate_change(total_cost, total_paid):
 
 
 ################################################ NEW MAIN SPACE#################################################
-yes = 1
-while (yes == 1):
-	# Input Section
-	total_cost = input("What was the price?:")
-	total_paid = input("What did you pay?:")
-	print " "
+if __name__ == '__main__':
+	yes = 1
+	while (yes == 1):
+		# Input Section
+		total_cost = input("What was the price?:")
+		total_paid = input("What did you pay?:")
+		print " "
 
-# Calculate change, return difference in float calue
-	change_owed = calculate_change(total_cost, total_paid)
-	convert_tender_2(change_owed)
+	# Calculate change, return difference in float calue
+		change_owed = calculate_change(total_cost, total_paid)
+		convert_tender_2(change_owed)
 
-	go_again = raw_input("Do it again?(y/n):")
-	if go_again != "y":
-		yes = 0
+		go_again = raw_input("Do it again?(y/n):")
+		if go_again != "y":
+			yes = 0
 #####################################################################################################################
 
 
